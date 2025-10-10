@@ -1,0 +1,277 @@
+/* ====== General Styles ====== */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fff;
+    color: #2e2e2e;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+.section-padding {
+    padding: 6rem 0;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+/* ====== Hero Section ====== */
+.hero-section {
+    background: url('https://images.pexels.com/photos/34159109/pexels-photo-34159109.jpeg') center/cover no-repeat;
+    color: #fff;
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.45);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-cta .btn {
+    border-radius: 50px;
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.hero-cta .btn:hover {
+    transform: translateY(-3px);
+}
+
+/* ====== Menu Cards ====== */
+.menu-card {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+}
+
+.menu-card-image {
+    position: relative;
+}
+
+.badge-special {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: #ff6347;
+    color: #fff;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+    border-radius: 5px;
+}
+
+/* ====== Gallery ====== */
+.gallery-item {
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* ====== Testimonials ====== */
+.testimonial-item {
+    text-align: center;
+    padding: 2rem;
+}
+
+.testimonial-quote {
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.testimonial-author {
+    font-weight: 600;
+}
+
+/* ====== Contact Form ====== */
+.contact-form .form-control,
+.contact-form .form-select {
+    border-radius: 10px;
+}
+
+.contact-form button {
+    border-radius: 50px;
+}
+
+/* ====== Footer ====== */
+.footer {
+    background-color: #1c1c1c;
+    color: #fff;
+}
+
+.footer a {
+    color: #fff;
+    transition: 0.3s;
+}
+
+.footer a:hover {
+    color: #ff6347;
+}
+
+/* ====== Dark Mode Toggle ====== */
+#darkModeToggle {
+    border-radius: 50%;
+}
+
+/* ====== Responsive ====== */
+@media(max-width: 991px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+}
+.menu-card {
+  height: 100%;                 /* Ensure card stretches inside the grid */
+  display: flex;                /* Use flexbox for column alignment */
+  flex-direction: column;       /* Stack image and body vertically */
+  background: #fff;
+  border-radius: 12px;          
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  overflow: hidden;
+  transition: box-shadow .2s;
+  min-height: 420px;            /* Set your minimum height here */
+  max-height: 450px;            /* Optional: set a max height */
+}
+
+.menu-card-image {
+  width: 100%;
+  height: 180px;                /* Fixed image height */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-card-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.menu-card-body {
+  flex: 1;                      /* Take up available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem;
+}
+
+/* Responsive tweak for mobile */
+@media (max-width: 576px) {
+  .menu-card {
+    min-height: 350px;
+  }
+  .menu-card-image {
+    height: 140px;
+  }
+}
+.gallery-item {
+  position: relative;
+  width: 100%;
+  height: 220px;                /* Fixed height for all cards */
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: box-shadow 0.2s;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* Ensures images fill the container */
+  border-radius: 12px;
+  transition: transform 0.2s;
+}
+
+/* Optional: Add hover effect for interactivity */
+.gallery-item:hover img,
+.gallery-item:focus img {
+  transform: scale(1.04);
+}
+
+@media (max-width: 576px) {
+  .gallery-item {
+    height: 140px;
+  }
+}
+.testimonial-item {
+  min-height: 320px;              /* Adjust to preferred visual size */
+  max-width: 400px;               /* Optional: limit wide cards for uniformity */
+  margin: 0 auto;                 /* Center in carousel */
+  display: flex;
+  flex-direction: column;         /* Stack avatar, quote, author, role vertically */
+  align-items: center;
+  justify-content: center;        /* Vertically center all content */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  padding: 2rem 1.25rem;
+}
+
+.testimonial-avatar img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #eee;
+}
+
+.testimonial-quote {
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.testimonial-author {
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+.testimonial-role {
+  font-size: 0.98rem;
+  color: #777;
+  text-align: center;
+}
+
+.carousel-item {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
