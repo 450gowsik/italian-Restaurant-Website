@@ -1,1034 +1,646 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Olive & Ember - Seasonal Mediterranean Kitchen offering fresh, locally-sourced dishes in an elegant atmosphere. Reserve your table today."
-    />
-    <meta
-      property="og:title"
-      content="Olive & Ember - Seasonal Mediterranean Kitchen"
-    />
-    <meta
-      property="og:description"
-      content="Experience the finest Mediterranean cuisine with locally-sourced ingredients and seasonal specials."
-    />
-    <meta property="og:type" content="website" />
-    <title>Olive & Ember - Seasonal Mediterranean Kitchen</title>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./assets/favicon.png" />
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Experience authentic Italian cuisine at La Bella Tavola. Fresh ingredients, traditional recipes, and a warm atmosphere in the heart of the city.">
+  <meta property="og:title" content="La Bella Tavola - Authentic Italian Restaurant">
+  <meta property="og:description"
+    content="Experience authentic Italian cuisine with fresh ingredients and traditional recipes.">
+  <meta property="og:type" content="website">
+  <title>La Bella Tavola - Authentic Italian Restaurant</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --primary-color: #c9a227;
+      --secondary-color: #1a1a2e;
+      --accent-color: #e8d5b7;
+    }
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+    }
 
-    <!-- Bootstrap 5 CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    .navbar-brand i {
+      color: var(--primary-color);
+    }
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="custom.css" />
-  </head>
-  <body>
-    <!-- Sticky Navigation -->
-    <nav
-      class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
-      id="mainNav"
-    >
-      <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#hero">
-          <img
-            src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/hotel-logo-design-template-e5520a805026e9d9a5dd660cf83185ba_screen.jpg?ts=1709456473"
-            alt="Olive & Ember Logo"
-            height="50"
-            class="me-2"
-          />
-          <span class="brand-name">Olive & Ember</span>
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
+    .hero-section {
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+        url('https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=1600');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-tagline {
+      font-size: 1.5rem;
+      font-weight: 300;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    .btn-primary:hover {
+      background-color: #b8921f;
+      border-color: #b8921f;
+    }
+
+    .section-title {
+      color: var(--secondary-color);
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--primary-color);
+    }
+
+    .menu-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .menu-card .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .price {
+      color: var(--primary-color);
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .special-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--primary-color);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      z-index: 10;
+    }
+
+    .gallery-img {
+      cursor: pointer;
+      transition: transform 0.3s, opacity 0.3s;
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-img:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .stars i {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    .testimonial-author {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .contact-form {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 15px;
+    }
+
+    .info-item i {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+
+    .footer {
+      background: var(--secondary-color) !important;
+    }
+
+    .social-icons a:hover {
+      color: var(--primary-color) !important;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-tagline {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="#hero">
+        <i class="bi bi-cup-hot-fill"></i> La Bella Tavola
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#hero">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#menu">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#gallery">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#testimonials">Reviews</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section id="hero" class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container h-100">
+      <div class="row h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1 class="hero-title mb-4">La Bella Tavola</h1>
+          <p class="hero-tagline mb-5">Authentic Italian Cuisine in the Heart of the City</p>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary btn-lg me-3 mb-3">Reserve Table</a>
+            <a href="#menu" class="btn btn-outline-light btn-lg mb-3">View Menu</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <img src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Restaurant interior with elegant dining setup" class="img-fluid rounded shadow">
+        </div>
+        <div class="col-lg-6">
+          <h2 class="section-title mb-4">Our Story</h2>
+          <p class="lead mb-4">Welcome to La Bella Tavola, where tradition meets passion.</p>
+          <p>Since 1985, we've been serving authentic Italian cuisine crafted from recipes passed down through
+            generations. Our family-owned restaurant brings the warmth and flavors of Italy to your table, using only
+            the freshest local ingredients and imported Italian specialties.</p>
+          <p>Every dish is prepared with love and attention to detail, ensuring an unforgettable dining experience that
+            transports you straight to the streets of Rome, Florence, and Naples.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Signature Dishes</h2>
+        <p class="text-muted">Handcrafted with the finest ingredients</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="card menu-card h-100 shadow-sm">
+            <img
+              src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600"
+              class="card-img-top" alt="Fresh Margherita Pizza with basil and mozzarella">
+            <div class="card-body">
+              <h5 class="card-title">Margherita Pizza</h5>
+              <p class="card-text">Wood-fired pizza with fresh mozzarella, San Marzano tomatoes, and basil.</p>
+              <p class="price">$18.99</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card menu-card h-100 shadow-sm">
+            <div class="special-badge">Today's Special</div>
+            <img
+              src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600"
+              class="card-img-top" alt="Homemade fettuccine pasta with alfredo sauce">
+            <div class="card-body">
+              <h5 class="card-title">Fettuccine Alfredo</h5>
+              <p class="card-text">Homemade pasta in a creamy parmesan sauce with a hint of garlic.</p>
+              <p class="price">$22.99</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card menu-card h-100 shadow-sm">
+            <img
+              src="https://images.pexels.com/photos/6287518/pexels-photo-6287518.jpeg?auto=compress&cs=tinysrgb&w=600"
+              class="card-img-top" alt="Osso Buco braised veal shanks">
+            <div class="card-body">
+              <h5 class="card-title">Osso Buco</h5>
+              <p class="card-text">Slow-braised veal shanks with gremolata and saffron risotto.</p>
+              <p class="price">$34.99</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card menu-card h-100 shadow-sm">
+            <img
+              src="https://images.pexels.com/photos/1438672/pexels-photo-1438672.jpeg?auto=compress&cs=tinysrgb&w=600"
+              class="card-img-top" alt="Bruschetta with fresh tomatoes">
+            <div class="card-body">
+              <h5 class="card-title">Bruschetta</h5>
+              <p class="card-text">Toasted bread topped with fresh tomatoes, basil, and extra virgin olive oil.</p>
+              <p class="price">$12.99</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card menu-card h-100 shadow-sm">
+            <img
+              src="https://images.pexels.com/photos/1850595/pexels-photo-1850595.jpeg?auto=compress&cs=tinysrgb&w=600"
+              class="card-img-top" alt="Classic Italian Tiramisu dessert">
+            <div class="card-body">
+              <h5 class="card-title">Tiramisu</h5>
+              <p class="card-text">Traditional Italian dessert with espresso-soaked ladyfingers and mascarpone.</p>
+              <p class="price">$9.99</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card menu-card h-100 shadow-sm">
+            <img
+              src="https://images.pexels.com/photos/7218637/pexels-photo-7218637.jpeg?auto=compress&cs=tinysrgb&w=600"
+              class="card-img-top" alt="Grilled salmon fillet">
+            <div class="card-body">
+              <h5 class="card-title">Grilled Salmon</h5>
+              <p class="card-text">Fresh Atlantic salmon with lemon butter sauce and seasonal vegetables.</p>
+              <p class="price">$28.99</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Gallery</h2>
+        <p class="text-muted">A glimpse into our culinary world</p>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-4 col-sm-6">
+          <img src="https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Elegant restaurant interior" class="img-fluid rounded gallery-img" data-bs-toggle="modal"
+            data-bs-target="#galleryModal"
+            data-img-src="https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=1200">
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <img src="https://images.pexels.com/photos/1126728/pexels-photo-1126728.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Chef preparing fresh pasta" class="img-fluid rounded gallery-img" data-bs-toggle="modal"
+            data-bs-target="#galleryModal"
+            data-img-src="https://images.pexels.com/photos/1126728/pexels-photo-1126728.jpeg?auto=compress&cs=tinysrgb&w=1200">
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <img src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Italian wine selection" class="img-fluid rounded gallery-img" data-bs-toggle="modal"
+            data-bs-target="#galleryModal"
+            data-img-src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=1200">
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <img src="https://images.pexels.com/photos/1579739/pexels-photo-1579739.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Outdoor dining terrace" class="img-fluid rounded gallery-img" data-bs-toggle="modal"
+            data-bs-target="#galleryModal"
+            data-img-src="https://images.pexels.com/photos/1579739/pexels-photo-1579739.jpeg?auto=compress&cs=tinysrgb&w=1200">
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <img src="https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Fresh ingredients display" class="img-fluid rounded gallery-img" data-bs-toggle="modal"
+            data-bs-target="#galleryModal"
+            data-img-src="https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&w=1200">
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <img src="https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Delicious dessert plating" class="img-fluid rounded gallery-img" data-bs-toggle="modal"
+            data-bs-target="#galleryModal"
+            data-img-src="https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=1200">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="" alt="Gallery image" class="img-fluid" id="modalImage">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="testimonials" class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">What Our Guests Say</h2>
+        <p class="text-muted">Testimonials from our valued customers</p>
+      </div>
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Testimonial 1"></button>
+          <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1"
+            aria-label="Testimonial 2"></button>
+          <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2"
+            aria-label="Testimonial 3"></button>
+          <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="3"
+            aria-label="Testimonial 4"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="testimonial-card">
+              <div class="stars mb-3">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testimonial-text">"Absolutely amazing! The pasta was cooked to perfection and the atmosphere was
+                warm and inviting. It felt like being in Italy. Highly recommend the Osso Buco!"</p>
+              <p class="testimonial-author">- Sarah Mitchell</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="testimonial-card">
+              <div class="stars mb-3">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testimonial-text">"Best Italian restaurant in the city! The service is impeccable, and every
+                dish is prepared with such care. The tiramisu is to die for. We come here for every special occasion."
+              </p>
+              <p class="testimonial-author">- Michael Chen</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="testimonial-card">
+              <div class="stars mb-3">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testimonial-text">"A hidden gem! The wood-fired pizza is authentic and delicious. The staff made
+                us feel like family. Can't wait to come back and try more items from the menu."</p>
+              <p class="testimonial-author">- Emma Rodriguez</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="testimonial-card">
+              <div class="stars mb-3">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testimonial-text">"Outstanding food and wonderful ambiance. The wine selection pairs perfectly
+                with their dishes. This place never disappoints. A must-visit for Italian food lovers!"</p>
+              <p class="testimonial-author">- David Thompson</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="#hero">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#menu">Menu</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#gallery">Gallery</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#testimonials">Reviews</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
-            </li>
-          </ul>
-          <button
-            class="btn btn-outline-dark ms-lg-3 mt-2 mt-lg-0"
-            id="darkModeToggle"
-            aria-label="Toggle dark mode"
-          >
-            <span class="dark-mode-icon">🌙</span>
-          </button>
-        </div>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-    </nav>
+    </div>
+  </section>
 
-    <main>
-      <!-- Hero Section -->
-      <section id="hero" class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="container h-100">
-          <div class="row h-100 align-items-center">
-            <div class="col-lg-8 mx-auto text-center hero-content">
-              <h1 class="display-3 fw-bold mb-3">Olive & Ember</h1>
-              <p class="lead mb-4">Seasonal Mediterranean Kitchen</p>
-              <p class="hero-tagline mb-5">
-                Where tradition meets innovation through fresh, locally-sourced
-                ingredients
-              </p>
-              <div class="hero-cta">
-                <a
-                  href="#contact"
-                  class="btn btn-primary btn-lg me-3 mb-3 smooth-scroll"
-                  >Reserve Table</a
-                >
-                <a
-                  href="#menu"
-                  class="btn btn-outline-light btn-lg mb-3 smooth-scroll"
-                  >View Menu</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- About Section -->
-      <section id="about" class="section-padding">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-              <img
-                src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg"
-                alt="Chef preparing Mediterranean dishes in our kitchen"
-                class="img-fluid rounded shadow-lg"
-              />
-            </div>
-            <div class="col-lg-6 ps-lg-5">
-              <h2 class="section-title mb-4">Our Story</h2>
-              <p class="lead mb-4">
-                Founded in 2018, Olive & Ember was born from a passion for
-                authentic Mediterranean flavors and a commitment to
-                sustainability.
-              </p>
-              <p>
-                We work directly with local farmers and artisans to bring you
-                the freshest seasonal ingredients, transformed into dishes that
-                honor centuries-old traditions while embracing modern culinary
-                techniques. Our wood-fired oven, sourced from a family workshop
-                in Naples, serves as the heart of our kitchen, infusing each
-                dish with the distinctive smoky essence that defines our
-                cuisine.
-              </p>
-              <p class="mb-0">
-                Under the guidance of Chef Elena Rodriguez, our menu evolves
-                with the seasons, ensuring that every visit offers something new
-                to discover while staying true to the timeless principles of
-                Mediterranean cooking.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Menu Highlights Section -->
-      <section id="menu" class="section-padding bg-light">
-        <div class="container">
-          <div class="text-center mb-5">
-            <h2 class="section-title mb-3">Menu Highlights</h2>
-            <p class="lead">
-              Signature dishes crafted with passion and the finest ingredients
-            </p>
-          </div>
-          <div class="row g-4">
-            <!-- Menu Item 1 -->
-            <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="menu-card">
-                <div class="menu-card-image">
-                  <img
-                    src="https://images.pexels.com/photos/16931503/pexels-photo-16931503.jpeg"
-                    alt="Wood-fired octopus with chickpea purée and paprika oil"
-                    class="img-fluid"
-                  />
-                  <span class="badge-special" id="todaysSpecial1"
-                    >Today's Special</span
-                  >
-                </div>
-                <div class="menu-card-body">
-                  <h3 class="menu-card-title">Charred Octopus</h3>
-                  <p class="menu-card-description">
-                    Wood-fired octopus with chickpea purée, preserved lemon, and
-                    smoked paprika oil
-                  </p>
-                  <p class="menu-card-price">$28</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Menu Item 2 -->
-            <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="menu-card">
-                <div class="menu-card-image">
-                  <img
-                    src="https://images.pexels.com/photos/28503610/pexels-photo-28503610.jpeg"
-                    alt="Saffron risotto with Mediterranean prawns"
-                    class="img-fluid"
-                  />
-                </div>
-                <div class="menu-card-body">
-                  <h3 class="menu-card-title">Saffron Risotto</h3>
-                  <p class="menu-card-description">
-                    Creamy risotto infused with saffron, topped with seared
-                    Mediterranean prawns and crispy basil
-                  </p>
-                  <p class="menu-card-price">$32</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Menu Item 3 -->
-            <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="menu-card">
-                <div class="menu-card-image">
-                  <img
-                    src="https://images.pexels.com/photos/29908554/pexels-photo-29908554.jpeg"
-                    alt="Slow-roasted lamb shoulder with herb crust"
-                    class="img-fluid"
-                  />
-                </div>
-                <div class="menu-card-body">
-                  <h3 class="menu-card-title">Herb-Crusted Lamb</h3>
-                  <p class="menu-card-description">
-                    Slow-roasted lamb shoulder with rosemary and thyme, served
-                    with roasted root vegetables
-                  </p>
-                  <p class="menu-card-price">$38</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Menu Item 4 -->
-            <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="menu-card">
-                <div class="menu-card-image">
-                  <img
-                    src="https://images.pexels.com/photos/33573597/pexels-photo-33573597.jpeg"
-                    alt="Burrata with heirloom tomatoes and basil"
-                    class="img-fluid"
-                  />
-                </div>
-                <div class="menu-card-body">
-                  <h3 class="menu-card-title">Burrata & Heirloom Tomatoes</h3>
-                  <p class="menu-card-description">
-                    Handmade burrata with vine-ripened heirloom tomatoes, basil,
-                    and aged balsamic
-                  </p>
-                  <p class="menu-card-price">$18</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Menu Item 5 -->
-            <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="menu-card">
-                <div class="menu-card-image">
-                  <img
-                    src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg"
-                    alt="Wood-fired seabass with fennel and citrus"
-                    class="img-fluid"
-                  />
-                </div>
-                <div class="menu-card-body">
-                  <h3 class="menu-card-title">Mediterranean Seabass</h3>
-                  <p class="menu-card-description">
-                    Whole seabass roasted with fennel, orange, and fresh herbs
-                    in our wood-fired oven
-                  </p>
-                  <p class="menu-card-price">$34</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Menu Item 6 -->
-            <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="menu-card">
-                <div class="menu-card-image">
-                  <img
-                    src="https://images.pexels.com/photos/2773940/pexels-photo-2773940.jpeg"
-                    alt="Truffle mushroom pasta with parmesan"
-                    class="img-fluid"
-                  />
-                </div>
-                <div class="menu-card-body">
-                  <h3 class="menu-card-title">Truffle Mushroom Pasta</h3>
-                  <p class="menu-card-description">
-                    House-made tagliatelle with wild mushrooms, black truffle,
-                    and aged parmesan
-                  </p>
-                  <p class="menu-card-price">$26</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Menu Item 7 -->
-            <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="menu-card">
-                <div class="menu-card-image">
-                  <img
-                    src="https://images.pexels.com/photos/34104574/pexels-photo-34104574.jpeg"
-                    alt="Grilled vegetable platter with hummus"
-                    class="img-fluid"
-                  />
-                </div>
-                <div class="menu-card-body">
-                  <h3 class="menu-card-title">Mezze Platter</h3>
-                  <p class="menu-card-description">
-                    Selection of grilled vegetables, house-made hummus, baba
-                    ganoush, and warm pita
-                  </p>
-                  <p class="menu-card-price">$22</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Menu Item 8 -->
-            <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="menu-card">
-                <div class="menu-card-image">
-                  <img
-                    src="https://images.pexels.com/photos/31472861/pexels-photo-31472861.jpeg"
-                    alt="Pistachio baklava with honey and rose water"
-                    class="img-fluid"
-                  />
-                </div>
-                <div class="menu-card-body">
-                  <h3 class="menu-card-title">Pistachio Baklava</h3>
-                  <p class="menu-card-description">
-                    Layers of phyllo pastry filled with pistachios, drizzled
-                    with honey and rose water
-                  </p>
-                  <p class="menu-card-price">$12</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Gallery Section -->
-      <section id="gallery" class="section-padding">
-        <div class="container">
-          <div class="text-center mb-5">
-            <h2 class="section-title mb-3">Gallery</h2>
-            <p class="lead">A glimpse into our culinary world</p>
-          </div>
-          <div class="row g-3">
-            <div class="col-6 col-md-4 col-lg-3">
-              <div
-                class="gallery-item"
-                role="button"
-                tabindex="0"
-                data-bs-toggle="modal"
-                data-bs-target="#galleryModal"
-                data-image="https://images.pexels.com/photos/5056621/pexels-photo-5056621.jpeg"
-                data-caption="Our signature wood-fired oven"
-              >
-                <img
-                  src="https://images.pexels.com/photos/33240983/pexels-photo-33240983.jpeg"
-                  alt="Wood-fired oven with flames"
-                  class="img-fluid rounded"
-                />
-              </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-              <div
-                class="gallery-item"
-                role="button"
-                tabindex="0"
-                data-bs-toggle="modal"
-                data-bs-target="#galleryModal"
-                data-image="https://images.pexels.com/photos/12919158/pexels-photo-12919158.jpeg"
-                data-caption="Elegant dining room ambiance"
-              >
-                <img
-                  src="https://images.pexels.com/photos/12919158/pexels-photo-12919158.jpeg"
-                  alt="Elegant restaurant dining room"
-                  class="img-fluid rounded"
-                />
-              </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-              <div
-                class="gallery-item"
-                role="button"
-                tabindex="0"
-                data-bs-toggle="modal"
-                data-bs-target="#galleryModal"
-                data-image="./assets/images/gallery-3.jpg"
-                data-caption="Fresh ingredients from local markets"
-              >
-                <img
-                  src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg"
-                  alt="Fresh vegetables and ingredients"
-                  class="img-fluid rounded"
-                />
-              </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-              <div
-                class="gallery-item"
-                role="button"
-                tabindex="0"
-                data-bs-toggle="modal"
-                data-bs-target="#galleryModal"
-                data-image="./assets/images/gallery-4.jpg"
-                data-caption="Chef Elena at work"
-              >
-                <img
-                  src="https://images.pexels.com/photos/3298687/pexels-photo-3298687.jpeg"
-                  alt="Chef preparing food in kitchen"
-                  class="img-fluid rounded"
-                />
-              </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-              <div
-                class="gallery-item"
-                role="button"
-                tabindex="0"
-                data-bs-toggle="modal"
-                data-bs-target="#galleryModal"
-                data-image="https://images.pexels.com/photos/5358487/pexels-photo-5358487.jpeg"
-                data-caption="Outdoor terrace seating"
-              >
-                <img
-                  src="https://images.pexels.com/photos/2565222/pexels-photo-2565222.jpeg"
-                  alt="Outdoor restaurant terrace"
-                  class="img-fluid rounded"
-                />
-              </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-              <div
-                class="gallery-item"
-                role="button"
-                tabindex="0"
-                data-bs-toggle="modal"
-                data-bs-target="#galleryModal"
-                data-image="./assets/images/gallery-6.jpg"
-                data-caption="Handmade pasta preparation"
-              >
-                <img
-                  src="https://images.pexels.com/photos/4252775/pexels-photo-4252775.jpeg"
-                  alt="Making fresh pasta by hand"
-                  class="img-fluid rounded"
-                />
-              </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-              <div
-                class="gallery-item"
-                role="button"
-                tabindex="0"
-                data-bs-toggle="modal"
-                data-bs-target="#galleryModal"
-                data-image="./assets/images/gallery-7.jpg"
-                data-caption="Wine cellar selection"
-              >
-                <img
-                  src="https://images.pexels.com/photos/29519419/pexels-photo-29519419.jpeg"
-                  alt="Restaurant wine cellar"
-                  class="img-fluid rounded"
-                />
-              </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-              <div
-                class="gallery-item"
-                role="button"
-                tabindex="0"
-                data-bs-toggle="modal"
-                data-bs-target="#galleryModal"
-                data-image="./assets/images/gallery-8.jpg"
-                data-caption="Dessert presentation"
-              >
-                <img
-                  src="https://images.pexels.com/photos/7235675/pexels-photo-7235675.jpeg"
-                  alt="Beautifully plated dessert"
-                  class="img-fluid rounded"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Gallery Modal -->
-      <div
-        class="modal fade"
-        id="galleryModal"
-        tabindex="-1"
-        aria-labelledby="galleryModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-          <div class="modal-content">
-            <div class="modal-header border-0">
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body text-center">
-              <img src="" alt="" id="modalImage" class="img-fluid rounded" />
-              <p class="mt-3 mb-0" id="modalCaption"></p>
-            </div>
-          </div>
-        </div>
+  <section id="contact" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="text-muted">Reserve your table or get in touch</p>
       </div>
-
-      <!-- Testimonials Section -->
-      <section id="testimonials" class="section-padding bg-light">
-        <div class="container">
-          <div class="text-center mb-5">
-            <h2 class="section-title mb-3">What Our Guests Say</h2>
-            <p class="lead">Experiences that keep them coming back</p>
-          </div>
-          <div
-            id="testimonialCarousel"
-            class="carousel slide"
-            data-bs-ride="carousel"
-          >
-            <div class="carousel-indicators">
-              <button
-                type="button"
-                data-bs-target="#testimonialCarousel"
-                data-bs-slide-to="0"
-                class="active"
-                aria-current="true"
-                aria-label="Slide 1"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#testimonialCarousel"
-                data-bs-slide-to="1"
-                aria-label="Slide 2"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#testimonialCarousel"
-                data-bs-slide-to="2"
-                aria-label="Slide 3"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#testimonialCarousel"
-                data-bs-slide-to="3"
-                aria-label="Slide 4"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#testimonialCarousel"
-                data-bs-slide-to="4"
-                aria-label="Slide 5"
-              ></button>
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="contact-info">
+            <h4 class="mb-4">Get In Touch</h4>
+            <div class="info-item mb-3">
+              <i class="bi bi-geo-alt-fill me-2"></i>
+              <span>123 Italian Way, Downtown District, New York, NY 10001</span>
             </div>
-            <div class="carousel-inner">
-              <!-- Testimonial 1 -->
-              <div class="carousel-item active">
-                <div class="testimonial-item">
-                  <div class="testimonial-avatar mb-3">
-                    <img
-                      src="https://images.pexels.com/photos/3217156/pexels-photo-3217156.jpeg"
-                      alt="Sarah Mitchell portrait"
-                      class="rounded-circle"
-                    />
-                  </div>
-                  <blockquote class="testimonial-quote">
-                    "Absolutely phenomenal! The charred octopus was the best
-                    I've ever had, and the atmosphere is both elegant and
-                    welcoming. Chef Elena's attention to detail shines through
-                    in every dish."
-                  </blockquote>
-                  <cite class="testimonial-author">Sarah Mitchell</cite>
-                  <p class="testimonial-role">Food Critic, Culinary Review</p>
-                </div>
-              </div>
-
-              <!-- Testimonial 2 -->
-              <div class="carousel-item">
-                <div class="testimonial-item">
-                  <div class="testimonial-avatar mb-3">
-                    <img
-                      src="https://images.pexels.com/photos/34200682/pexels-photo-34200682.jpeg"
-                      alt="James Chen portrait"
-                      class="rounded-circle"
-                    />
-                  </div>
-                  <blockquote class="testimonial-quote">
-                    "We celebrated our anniversary here and couldn't have chosen
-                    a better place. The service was impeccable, the wine
-                    selection superb, and every course was a revelation. Highly
-                    recommend the tasting menu!"
-                  </blockquote>
-                  <cite class="testimonial-author">James Chen</cite>
-                  <p class="testimonial-role">Regular Guest</p>
-                </div>
-              </div>
-
-              <!-- Testimonial 3 -->
-              <div class="carousel-item">
-                <div class="testimonial-item">
-                  <div class="testimonial-avatar mb-3">
-                    <img
-                      src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg"
-                      alt="Maria Rodriguez portrait"
-                      class="rounded-circle"
-                    />
-                  </div>
-                  <blockquote class="testimonial-quote">
-                    "As someone who grew up in the Mediterranean, I can say this
-                    is the real deal. The flavors transported me home. The staff
-                    is knowledgeable and passionate, making the experience even
-                    more special."
-                  </blockquote>
-                  <cite class="testimonial-author">Maria Rodriguez</cite>
-                  <p class="testimonial-role">Travel Blogger</p>
-                </div>
-              </div>
-
-              <!-- Testimonial 4 -->
-              <div class="carousel-item">
-                <div class="testimonial-item">
-                  <div class="testimonial-avatar mb-3">
-                    <img
-                      src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg"
-                      alt="David Thompson portrait"
-                      class="rounded-circle"
-                    />
-                  </div>
-                  <blockquote class="testimonial-quote">
-                    "The commitment to local, seasonal ingredients really sets
-                    Olive & Ember apart. You can taste the quality in every
-                    bite. The wood-fired dishes have an incredible depth of
-                    flavor. A must-visit!"
-                  </blockquote>
-                  <cite class="testimonial-author">David Thompson</cite>
-                  <p class="testimonial-role">Michelin Guide Contributor</p>
-                </div>
-              </div>
-
-              <!-- Testimonial 5 -->
-              <div class="carousel-item">
-                <div class="testimonial-item">
-                  <div class="testimonial-avatar mb-3">
-                    <img
-                      src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg"
-                      alt="Emily Watson portrait"
-                      class="rounded-circle"
-                    />
-                  </div>
-                  <blockquote class="testimonial-quote">
-                    "I've been coming here monthly for two years, and they never
-                    disappoint. The seasonal menu keeps things fresh, and the
-                    staff remembers our preferences. It feels like dining with
-                    family."
-                  </blockquote>
-                  <cite class="testimonial-author">Emily Watson</cite>
-                  <p class="testimonial-role">Loyal Patron</p>
-                </div>
-              </div>
+            <div class="info-item mb-3">
+              <i class="bi bi-telephone-fill me-2"></i>
+              <span>(555) 123-4567</span>
             </div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#testimonialCarousel"
-              data-bs-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#testimonialCarousel"
-              data-bs-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section id="contact" class="section-padding">
-        <div class="container">
-          <div class="text-center mb-5">
-            <h2 class="section-title mb-3">Visit Us</h2>
-            <p class="lead">Reserve your table or get in touch</p>
-          </div>
-          <div class="row g-5">
-            <!-- Contact Info & Map -->
-            <div class="col-lg-6">
-              <div class="contact-info mb-4">
-                <h3 class="h5 mb-4">Location & Hours</h3>
-                <div class="mb-3">
-                  <strong>Address</strong>
-                  <p class="mb-0">
-                    425 Mediterranean Avenue<br />San Francisco, CA 94102
-                  </p>
-                </div>
-                <div class="mb-3">
-                  <strong>Phone</strong>
-                  <p class="mb-0">
-                    <a href="tel:+14155551234">(415) 555-1234</a>
-                  </p>
-                </div>
-                <div class="mb-3">
-                  <strong>Email</strong>
-                  <p class="mb-0">
-                    <a href="mailto:reservations@oliveember.com"
-                      >reservations@oliveember.com</a
-                    >
-                  </p>
-                </div>
-                <div class="mb-4">
-                  <strong>Opening Hours</strong>
-                  <p class="mb-0">
-                    Tuesday - Thursday: 5:00 PM - 10:00 PM<br />
-                    Friday - Saturday: 5:00 PM - 11:00 PM<br />
-                    Sunday: 4:00 PM - 9:00 PM<br />
-                    Monday: Closed
-                  </p>
-                </div>
-              </div>
-              <!-- Map placeholder -->
-              <div class="map-container rounded overflow-hidden shadow">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0977169343566!2d-122.41941648468177!3d37.77492977975903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c6c8f4459%3A0xb10ed6d9b5050fa5!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
-                  width="100%"
-                  height="300"
-                  style="border: 0"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  title="Olive & Ember location map"
-                ></iframe>
-              </div>
+            <div class="info-item mb-4">
+              <i class="bi bi-envelope-fill me-2"></i>
+              <span>info@labellatavolarestaurant.com</span>
             </div>
-
-            <!-- Booking Form -->
-            <div class="col-lg-6">
-              <div class="contact-form">
-                <h3 class="h5 mb-4">Reserve Your Table</h3>
-                <form id="bookingForm" novalidate>
-                  <div class="mb-3">
-                    <label for="name" class="form-label"
-                      >Full Name <span class="text-danger">*</span></label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="name"
-                      name="name"
-                      required
-                      minlength="2"
-                      maxlength="50"
-                    />
-                    <div class="invalid-feedback">
-                      Please enter your name (2-50 characters).
-                    </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="email" class="form-label"
-                      >Email Address <span class="text-danger">*</span></label
-                    >
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="email"
-                      name="email"
-                      required
-                    />
-                    <div class="invalid-feedback">
-                      Please enter a valid email address.
-                    </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="phone" class="form-label">Phone Number</label>
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="phone"
-                      name="phone"
-                      placeholder="(123) 456-7890"
-                    />
-                    <div class="invalid-feedback">
-                      Please enter a valid phone number.
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <label for="date" class="form-label"
-                        >Date <span class="text-danger">*</span></label
-                      >
-                      <input
-                        type="date"
-                        class="form-control"
-                        id="date"
-                        name="date"
-                        required
-                      />
-                      <div class="invalid-feedback">Please select a date.</div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <label for="time" class="form-label"
-                        >Time <span class="text-danger">*</span></label
-                      >
-                      <input
-                        type="time"
-                        class="form-control"
-                        id="time"
-                        name="time"
-                        required
-                      />
-                      <div class="invalid-feedback">Please select a time.</div>
-                    </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="guests" class="form-label"
-                      >Number of Guests
-                      <span class="text-danger">*</span></label
-                    >
-                    <select
-                      class="form-select"
-                      id="guests"
-                      name="guests"
-                      required
-                    >
-                      <option value="" selected disabled>
-                        Select number of guests
-                      </option>
-                      <option value="1">1 Guest</option>
-                      <option value="2">2 Guests</option>
-                      <option value="3">3 Guests</option>
-                      <option value="4">4 Guests</option>
-                      <option value="5">5 Guests</option>
-                      <option value="6">6 Guests</option>
-                      <option value="7+">7+ Guests</option>
-                    </select>
-                    <div class="invalid-feedback">
-                      Please select number of guests.
-                    </div>
-                  </div>
-
-                  <div class="mb-4">
-                    <label for="message" class="form-label"
-                      >Special Requests or Notes</label
-                    >
-                    <textarea
-                      class="form-control"
-                      id="message"
-                      name="message"
-                      rows="4"
-                      maxlength="500"
-                      placeholder="Any dietary restrictions, special occasions, or seating preferences?"
-                    ></textarea>
-                    <div class="form-text">Maximum 500 characters</div>
-                  </div>
-
-                  <button type="submit" class="btn btn-primary w-100">
-                    Submit Reservation
-                  </button>
-                </form>
-
-                <!-- Success Message (hidden by default) -->
-                <div
-                  id="successMessage"
-                  class="alert alert-success mt-3 d-none"
-                  role="alert"
-                >
-                  <h4 class="alert-heading">Reservation Received!</h4>
-                  <p class="mb-0">
-                    Thank you for your reservation request. We'll confirm your
-                    booking within 24 hours via email.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer bg-dark text-white py-5">
-      <div class="container">
-        <div class="row g-4">
-          <div class="col-lg-4 mb-4 mb-lg-0">
-            <div class="d-flex align-items-center mb-3">
-              <img
-                src="./assets/logo-white.svg"
-                alt="Olive & Ember Logo"
-                height="40"
-                class="me-2"
-              />
-              <span class="h5 mb-0">Olive & Ember</span>
-            </div>
-            <p class="text-light">
-              Seasonal Mediterranean Kitchen bringing authentic flavors to San
-              Francisco since 2018.
-            </p>
-          </div>
-
-          <div class="col-lg-4 mb-4 mb-lg-0">
             <h5 class="mb-3">Opening Hours</h5>
-            <ul class="list-unstyled text-light">
-              <li class="mb-2">Tuesday - Thursday: 5:00 PM - 10:00 PM</li>
-              <li class="mb-2">Friday - Saturday: 5:00 PM - 11:00 PM</li>
-              <li class="mb-2">Sunday: 4:00 PM - 9:00 PM</li>
-              <li>Monday: Closed</li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4">
-            <h5 class="mb-3">Follow Us</h5>
-            <div class="social-links mb-3">
-              <a
-                href="https://facebook.com"
-                class="btn btn-outline-light btn-sm me-2"
-                aria-label="Visit our Facebook page"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://instagram.com"
-                class="btn btn-outline-light btn-sm me-2"
-                aria-label="Visit our Instagram page"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://twitter.com"
-                class="btn btn-outline-light btn-sm"
-                aria-label="Visit our Twitter page"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"
-                  />
-                </svg>
-              </a>
+            <p class="mb-2"><strong>Monday - Thursday:</strong> 11:00 AM - 10:00 PM</p>
+            <p class="mb-2"><strong>Friday - Saturday:</strong> 11:00 AM - 11:00 PM</p>
+            <p class="mb-4"><strong>Sunday:</strong> 12:00 PM - 9:00 PM</p>
+            <div class="map-container">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.682279866435!2d-73.98784668459395!3d40.74844097932847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1234567890"
+                width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" title="Restaurant location map"></iframe>
             </div>
-            <p class="text-light mb-0">
-              <a
-                href="mailto:reservations@oliveember.com"
-                class="text-light text-decoration-none"
-                >reservations@oliveember.com</a
-              ><br />
-              <a href="tel:+14155551234" class="text-light text-decoration-none"
-                >(415) 555-1234</a
-              >
-            </p>
           </div>
         </div>
-        <hr class="my-4 bg-light" />
-        <div class="text-center text-light">
-          <p class="mb-0">
-            &copy; 2024 Olive & Ember. All rights reserved. |
-            <a href="#" class="text-light">Privacy Policy</a> |
-            <a href="#" class="text-light">Terms of Service</a>
-          </p>
+        <div class="col-lg-6">
+          <form id="contactForm" class="contact-form" novalidate>
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="name" name="name" required minlength="2" maxlength="50">
+              <div class="invalid-feedback">Please enter your name (2-50 characters).</div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+              <input type="email" class="form-control" id="email" name="email" required>
+              <div class="invalid-feedback">Please enter a valid email address.</div>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9\-\+\(\)\s]{10,}">
+              <div class="invalid-feedback">Please enter a valid phone number (minimum 10 digits).</div>
+            </div>
+            <div class="mb-3">
+              <label for="date" class="form-label">Preferred Date</label>
+              <input type="date" class="form-control" id="date" name="date">
+            </div>
+            <div class="mb-3">
+              <label for="guests" class="form-label">Number of Guests</label>
+              <select class="form-select" id="guests" name="guests">
+                <option value="1">1 Person</option>
+                <option value="2" selected>2 People</option>
+                <option value="3">3 People</option>
+                <option value="4">4 People</option>
+                <option value="5">5 People</option>
+                <option value="6">6 People</option>
+                <option value="7+">7+ People</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
+              <textarea class="form-control" id="message" name="message" rows="4" required minlength="10"
+                maxlength="500"></textarea>
+              <div class="invalid-feedback">Please enter a message (10-500 characters).</div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
+            <div class="alert alert-success mt-3 d-none" id="successMessage" role="alert">
+              Thank you! Your message has been sent successfully. We'll get back to you soon.
+            </div>
+          </form>
         </div>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <!-- Bootstrap Bundle JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <footer class="footer bg-dark text-light py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-3 mb-md-0">
+          <h5 class="mb-3"><i class="bi bi-cup-hot-fill"></i> La Bella Tavola</h5>
+          <p class="mb-0">Authentic Italian cuisine since 1985</p>
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0">
+          <h6 class="mb-3">Opening Hours</h6>
+          <p class="mb-1">Mon-Thu: 11AM - 10PM</p>
+          <p class="mb-1">Fri-Sat: 11AM - 11PM</p>
+          <p class="mb-0">Sun: 12PM - 9PM</p>
+        </div>
+        <div class="col-md-4">
+          <h6 class="mb-3">Follow Us</h6>
+          <div class="social-icons">
+            <a href="#" class="text-light me-3" aria-label="Facebook"><i class="bi bi-facebook fs-4"></i></a>
+            <a href="#" class="text-light me-3" aria-label="Instagram"><i class="bi bi-instagram fs-4"></i></a>
+            <a href="#" class="text-light me-3" aria-label="Twitter"><i class="bi bi-twitter fs-4"></i></a>
+            <a href="#" class="text-light" aria-label="TripAdvisor"><i class="bi bi-map fs-4"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4 bg-secondary">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2024 La Bella Tavola. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Custom JavaScript -->
-    <script src="./js/main.js"></script>
-  </body>
+  <script type="module" src="/main.js"></script>
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Gallery Modal and Form Script -->
+  <script>
+    // Gallery Modal
+    document.querySelectorAll('.gallery-img').forEach(img => {
+      img.addEventListener('click', function () {
+        document.getElementById('modalImage').src = this.dataset.imgSrc;
+      });
+    });
+
+    // Form Validation
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (this.checkValidity()) {
+        document.getElementById('successMessage').classList.remove('d-none');
+        this.reset();
+        setTimeout(() => {
+          document.getElementById('successMessage').classList.add('d-none');
+        }, 5000);
+      }
+      this.classList.add('was-validated');
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function () {
+      const navbar = document.getElementById('mainNav');
+      if (window.scrollY > 50) {
+        navbar.classList.add('shadow');
+      } else {
+        navbar.classList.remove('shadow');
+      }
+    });
+  </script>
+</body>
+
 </html>
