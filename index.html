@@ -618,19 +618,45 @@
       });
     });
 
-    // Form Validation & Submit
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
+    // Form Validation & Submit to Backend
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
       e.preventDefault();
       this.classList.add('was-validated');
 
       if (!this.checkValidity()) return;
 
-      document.getElementById('successMessage').classList.remove('d-none');
-      this.reset();
-      this.classList.remove('was-validated');
-      setTimeout(() => {
-        document.getElementById('successMessage').classList.add('d-none');
-      }, 5000);
+      const formData = {
+        full_name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        preferred_date: document.getElementById('date').value,
+        guests: document.getElementById('guests').value,
+        message: document.getElementById('message').value
+      };
+
+      try {
+        const response = await fetch('/api/customer-detail', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          document.getElementById('successMessage').classList.remove('d-none');
+          this.reset();
+          this.classList.remove('was-validated');
+          setTimeout(() => {
+            document.getElementById('successMessage').classList.add('d-none');
+          }, 5000);
+        } else {
+          alert('Error: ' + result.message);
+        }
+      } catch (error) {
+        alert('Could not connect to the server.');
+        console.error('Submission error:', error);
+      }
     });
 
     // Navbar scroll effect
