@@ -3,8 +3,11 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const path = require('path');
 
+// Load .env file for local development
+require('dotenv').config();
+
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
@@ -15,27 +18,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname)));
 
 // =====================
-// MySQL Connection
+// MySQL Connection (PlanetScale / Environment Variables)
 // =====================
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root@123',
-  multipleStatements: true
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || 'root@123',
+  database: process.env.DB_NAME || 'restaurant_db',
+  ssl: process.env.DB_HOST ? { rejectUnauthorized: true } : false
 });
 
-// Connect and initialize database + table
+// Connect and initialize table
 db.connect((err) => {
   if (err) {
     console.error('❌ MySQL connection failed:', err.message);
     process.exit(1);
   }
-  console.log('✅ Connected to MySQL server');
+  console.log('✅ MySQL Connected');
 
-  // Create database if it doesn't exist, then use it and create the table
-  const initSQL = `
-    CREATE DATABASE IF NOT EXISTS restaurant_db;
-    USE restaurant_db;
+  // Create table if it doesn't exist
+  const createTableSQL = `
     CREATE TABLE IF NOT EXISTS customer_detail (
       id INT AUTO_INCREMENT PRIMARY KEY,
       full_name VARCHAR(50) NOT NULL,
@@ -48,20 +50,12 @@ db.connect((err) => {
     );
   `;
 
-  db.query(initSQL, (err) => {
+  db.query(createTableSQL, (err) => {
     if (err) {
-      console.error('❌ Database/table initialization failed:', err.message);
+      console.error('❌ Table initialization failed:', err.message);
       process.exit(1);
     }
-    console.log('✅ Database "restaurant_db" and table "customer_detail" are ready');
-
-    // Switch to the restaurant_db for all future queries
-    db.changeUser({ database: 'restaurant_db' }, (err) => {
-      if (err) {
-        console.error('❌ Failed to switch database:', err.message);
-        process.exit(1);
-      }
-    });
+    console.log('✅ Table "customer_detail" is ready');
   });
 });
 

@@ -635,7 +635,7 @@
       };
 
       try {
-        const response = await fetch('http://localhost:3000/api/customer-detail', {
+        const response = await fetch('/api/customer-detail', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
