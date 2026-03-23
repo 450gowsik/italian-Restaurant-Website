@@ -46,6 +46,11 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
+// Root Endpoint
+app.get("/", (req, res) => {
+  res.send("API is working");
+});
+
 // Health Check Endpoint
 app.get("/health", (req, res) => {
   res.status(200).json({ status: "OK", uptime: process.uptime() });

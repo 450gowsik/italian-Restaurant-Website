@@ -1,5 +1,7 @@
 service: italian-restaurant-api
 
+useDotenv: true
+
 provider:
   name: aws
   stage: dev

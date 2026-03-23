@@ -635,7 +635,8 @@
       };
 
       try {
-        const response = await fetch('/api/customer-detail', {
+        // Pointing directly to your new AWS Serverless backend
+        const response = await fetch('https://lbmn21zjb6.execute-api.us-east-1.amazonaws.com/api/customer-detail', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
