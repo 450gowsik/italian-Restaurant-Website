@@ -1,0 +1,17 @@
+service: italian-restaurant-api
+
+provider:
+  name: aws
+  stage: dev
+  runtime: nodejs18.x
+  region: us-east-1
+  timeout: 10
+  memorySize: 512
+  environment:
+    DATABASE_URL: ${env:DATABASE_URL}
+
+functions:
+  api:
+    handler: server.handler
+    events:
+      - httpApi: '*'
